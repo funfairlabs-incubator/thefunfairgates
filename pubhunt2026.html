@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FOOK HUNT — Team File</title>
+<style>
+  :root{
+    --sky-top:#5C94FC;
+    --sky-bottom:#8CBBFC;
+    --ink:#0F0F0F;
+    --cyan:#4CE0E8;
+    --grass-dark:#1E5B1E;
+    --grass-light:#4DA324;
+    --orange:#E8820C;
+    --cream:#FCFCEC;
+    --scan:rgba(0,0,0,0.06);
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html,body{height:100%;}
+  body{
+    font-family: "Courier New", ui-monospace, "SF Mono", Menlo, monospace;
+    background:
+      repeating-linear-gradient(0deg, var(--scan) 0px, var(--scan) 1px, transparent 1px, transparent 3px),
+      linear-gradient(180deg, var(--sky-top) 0%, var(--sky-bottom) 78%, var(--sky-bottom) 78%);
+    min-height:100vh;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    overflow-x:hidden;
+    image-rendering:pixelated;
+    color:var(--ink);
+  }
+
+  .stage{
+    width:100%;
+    max-width:640px;
+    padding:32px 20px 0;
+    text-align:center;
+    position:relative;
+    z-index:2;
+  }
+
+  .eyebrow{
+    font-size:14px;
+    font-weight:700;
+    letter-spacing:.25em;
+    color:var(--ink);
+    background:var(--cream);
+    display:inline-block;
+    padding:6px 12px;
+    border:3px solid var(--ink);
+    box-shadow:4px 4px 0 var(--ink);
+    margin-bottom:28px;
+  }
+
+  .logo-box{
+    background:var(--ink);
+    border:5px solid var(--cream);
+    box-shadow:0 0 0 3px var(--ink), 8px 8px 0 rgba(0,0,0,0.35);
+    padding:22px 18px 26px;
+    margin:14px auto 0;
+    width:100%;
+    max-width:380px;
+    box-sizing:border-box;
+  }
+
+  .logo-line{
+    font-size:clamp(28px, 9vw, 56px);
+    line-height:1;
+    letter-spacing:1px;
+    color:var(--cyan);
+    font-weight:900;
+    text-shadow: 3px 0 0 var(--ink), -3px 0 0 var(--ink), 0 3px 0 var(--ink), 0 -3px 0 var(--ink);
+    white-space:nowrap;
+  }
+
+  .subtitle{
+    margin-top:22px;
+    font-size:15px;
+    font-weight:700;
+    letter-spacing:.1em;
+    color:var(--ink);
+  }
+
+  .clear-label{
+    margin-top:26px;
+    font-size:16px;
+    font-weight:700;
+    letter-spacing:.15em;
+    color:var(--ink);
+  }
+
+  .game-tag{
+    display:block;
+    margin:10px auto 0;
+    background:var(--ink);
+    color:var(--cyan);
+    border:4px solid var(--cream);
+    box-shadow:0 0 0 3px var(--ink), 6px 6px 0 rgba(0,0,0,0.35);
+    padding:14px 24px;
+    font-size:clamp(26px, 8vw, 44px);
+    font-weight:900;
+    letter-spacing:.04em;
+    text-shadow: 2px 0 0 var(--ink), -2px 0 0 var(--ink), 0 2px 0 var(--ink), 0 -2px 0 var(--ink);
+    width:100%;
+    max-width:380px;
+    box-sizing:border-box;
+  }
+
+  .game-sub{
+    margin-top:8px;
+    font-size:15px;
+    font-weight:700;
+    letter-spacing:.15em;
+    color:var(--ink);
+  }
+
+  .crt{
+    margin:22px auto 0;
+    width:100%;
+    max-width:380px;
+    box-sizing:border-box;
+    background:var(--ink);
+    padding:10px;
+    border:5px solid var(--cream);
+    box-shadow:0 0 0 3px var(--ink), 8px 8px 0 rgba(0,0,0,0.35);
+  }
+  .screenshot{
+    display:block;
+    width:100%;
+    height:auto;
+    image-rendering:pixelated;
+    filter:saturate(1.05) contrast(1.03);
+  }
+  .caption{
+    margin-top:10px;
+    font-size:13px;
+    font-weight:700;
+    letter-spacing:.1em;
+    color:var(--ink);
+  }
+
+  .sprite-row{
+    margin-top:34px;
+    display:flex;
+    justify-content:center;
+    align-items:flex-end;
+    gap:28px;
+    height:70px;
+  }
+
+  /* pixel duck, drawn with box-shadow "pixels" */
+  .duck{
+    position:relative;
+    width:4px;
+    height:4px;
+    background:transparent;
+    box-shadow:
+      16px 0 0 var(--grass-dark), 20px 0 0 var(--grass-dark), 24px 0 0 var(--grass-dark),
+      12px 4px 0 var(--grass-dark), 16px 4px 0 var(--grass-dark), 20px 4px 0 var(--grass-dark), 24px 4px 0 var(--grass-dark), 28px 4px 0 var(--orange),
+      8px 8px 0 var(--grass-dark), 12px 8px 0 var(--grass-dark), 16px 8px 0 var(--grass-dark), 20px 8px 0 var(--grass-dark), 24px 8px 0 var(--grass-dark), 28px 8px 0 var(--orange), 32px 8px 0 var(--orange),
+      4px 12px 0 var(--grass-dark), 8px 12px 0 var(--grass-dark), 12px 12px 0 var(--grass-dark), 16px 12px 0 var(--grass-dark), 20px 12px 0 var(--grass-dark), 24px 12px 0 var(--grass-dark), 28px 12px 0 var(--grass-dark),
+      8px 16px 0 var(--grass-dark), 12px 16px 0 var(--grass-dark), 16px 16px 0 var(--grass-dark), 20px 16px 0 var(--grass-dark), 24px 16px 0 var(--grass-dark);
+    animation: flap 0.6s steps(1) infinite;
+    transform: scale(1.6);
+    margin-bottom: 6px;
+  }
+
+  @keyframes flap{
+    0%, 49%{
+      box-shadow:
+        16px 0 0 var(--grass-dark), 20px 0 0 var(--grass-dark), 24px 0 0 var(--grass-dark),
+        12px 4px 0 var(--grass-dark), 16px 4px 0 var(--grass-dark), 20px 4px 0 var(--grass-dark), 24px 4px 0 var(--grass-dark), 28px 4px 0 var(--orange),
+        8px 8px 0 var(--grass-dark), 12px 8px 0 var(--grass-dark), 16px 8px 0 var(--grass-dark), 20px 8px 0 var(--grass-dark), 24px 8px 0 var(--grass-dark), 28px 8px 0 var(--orange), 32px 8px 0 var(--orange),
+        4px 12px 0 var(--grass-dark), 8px 12px 0 var(--grass-dark), 12px 12px 0 var(--grass-dark), 16px 12px 0 var(--grass-dark), 20px 12px 0 var(--grass-dark), 24px 12px 0 var(--grass-dark), 28px 12px 0 var(--grass-dark),
+        8px 16px 0 var(--grass-dark), 12px 16px 0 var(--grass-dark), 16px 16px 0 var(--grass-dark), 20px 16px 0 var(--grass-dark), 24px 16px 0 var(--grass-dark);
+    }
+    50%, 100%{
+      box-shadow:
+        16px -6px 0 var(--grass-dark), 20px -6px 0 var(--grass-dark), 24px -6px 0 var(--grass-dark),
+        16px -2px 0 var(--grass-dark), 20px -2px 0 var(--grass-dark), 24px -2px 0 var(--grass-dark), 28px -2px 0 var(--orange),
+        8px 8px 0 var(--grass-dark), 12px 8px 0 var(--grass-dark), 16px 8px 0 var(--grass-dark), 20px 8px 0 var(--grass-dark), 24px 8px 0 var(--grass-dark), 28px 8px 0 var(--orange), 32px 8px 0 var(--orange),
+        4px 12px 0 var(--grass-dark), 8px 12px 0 var(--grass-dark), 12px 12px 0 var(--grass-dark), 16px 12px 0 var(--grass-dark), 20px 12px 0 var(--grass-dark), 24px 12px 0 var(--grass-dark), 28px 12px 0 var(--grass-dark),
+        8px 16px 0 var(--grass-dark), 12px 16px 0 var(--grass-dark), 16px 16px 0 var(--grass-dark), 20px 16px 0 var(--grass-dark), 24px 16px 0 var(--grass-dark);
+    }
+  }
+
+  .prompt{
+    margin-top:30px;
+    font-size:14px;
+    font-weight:700;
+    letter-spacing:.15em;
+    color:var(--ink);
+    animation: blink 1.1s steps(1) infinite;
+  }
+  @keyframes blink{ 50%{ opacity:0; } }
+
+  .ground{
+    width:100%;
+    height:22vh;
+    min-height:120px;
+    margin-top:30px;
+    background:
+      repeating-linear-gradient(90deg, var(--grass-dark) 0 8px, transparent 8px 16px),
+      var(--grass-light);
+    position:relative;
+    border-top:4px solid var(--ink);
+  }
+  .ground::before{
+    content:"";
+    position:absolute;
+    top:-10px; left:0; right:0; height:10px;
+    background:repeating-linear-gradient(90deg, var(--grass-light) 0 6px, transparent 6px 12px);
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    .duck, .prompt{ animation:none; }
+  }
+</style>
+</head>
+<body>
+  <div class="stage">
+    <div class="eyebrow">PUB HUNT26 · TEAM FILE</div>
+    <div class="clear-label">OUR TEAM NAME IS</div>
+    <div class="logo-box">
+      <div class="logo-line">FOOK HUNT</div>
+    </div>
+    <div class="subtitle">VIDEO GAME NIGHT — SQUAD ENTRY</div>
+    <div class="clear-label">WE ARE DRESSED AS</div>
+    <div class="game-tag">🎮 DUCK HUNT</div>
+    <div class="game-sub">NES &nbsp;·&nbsp; 1984</div>
+    <div class="crt">
+      <img class="screenshot" src="https://www.vgfacts.com/media/boxart/1/308.png?updated=1688880825" alt="Duck Hunt NES box art" crossorigin="anonymous" referrerpolicy="no-referrer">
+    </div>
+    <div class="caption">THE GAME WE'RE DRESSED AS — SO YOU KNOW IT WHEN YOU SEE IT</div>
+    <div class="sprite-row"><div class="duck"></div></div>
+    <div class="prompt">PRESS START</div>
+  </div>
+  <div class="ground"></div>
+</body>
+</html>
